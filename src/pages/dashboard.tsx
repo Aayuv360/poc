@@ -30,11 +30,13 @@ export const getServerSideProps = wrapper.getServerSideProps(
         };
       }
 
-      let customerId = 1;
+     
+      //const customerId = CustomerKey[customerKey  as keyof typeof CustomerKey]; // Default to acme
+       let customerId = 1; // Default to acme (hp)
       if (customerKey === "globex") customerId = 2;
-
+console.log("Customer ID:", customerId);
       const res = await fetch(
-        `https://localhost:7187/api/products?customerId=${customerId}`,
+        `http://localhost:5010/api/products?customerId=${customerId}`,
         { cache: "no-store" }
       );
       const products = await res.json();

@@ -16,7 +16,7 @@ export const customerThemes: Record<string, CustomerTheme> = {
     primaryColor: "#0096D6",
     accentColor: "#0096D6",
     cardColor:'#33b5e4',
-    logoUrl: "/logos/hp.png",
+    logoUrl: "/logos/hp.png",    
   },
   globex: {
     name: "Lenovo",

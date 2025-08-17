@@ -22,10 +22,7 @@ export default function History({ customerKey }: Props) {
   return (
     <div>
       <ProductHistory
-        customerkey={customerKey}
-
-        //primaryColor={theme.primaryColor}
-        //logoUrl={theme.logoUrl}
+        customerKey={customerKey}
       />
     </div>
   );

@@ -7,6 +7,7 @@ import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
 import HistoryOutlinedIcon from "@mui/icons-material/HistoryOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import Image from "next/image";
+import { CustomerKey } from "@/utils/enum";
 
 type Props = {
   children: ReactNode;
@@ -19,7 +20,7 @@ export default function Layout({ children, customerKey }: Props) {
   const primaryColor = theme?.logoPrimaryColor ?? "#1976d2";
   const logoUrl = theme?.logoUrl ?? "";
   const router = useRouter();
-
+  const companyId = CustomerKey[customerKey  as keyof typeof CustomerKey]; // Default to acme
   const navLinks = [
     {
       href: "/dashboard",
@@ -31,6 +32,11 @@ export default function Layout({ children, customerKey }: Props) {
       label: "Order History",
       icon: <HistoryOutlinedIcon fontSize="small" />,
     },
+    {
+      href: `/faqs/${companyId}`,
+      label: "FAQs",
+      icon: <Inventory2OutlinedIcon fontSize="small" />,
+    },   
     {
       href: "/logout",
       label: "Logout",
@@ -65,7 +71,9 @@ export default function Layout({ children, customerKey }: Props) {
             <Image
               src={logoUrl}
               alt={`${customerName} Logo`}
-              style={{ maxWidth: "100%", height: 60, objectFit: "contain" }}
+              width={120}
+              height={60}
+              style={{ maxWidth: "100%", objectFit: "contain" }}
             />
           </div>
           <nav style={{ flex: 1 }}>
@@ -82,10 +90,10 @@ export default function Layout({ children, customerKey }: Props) {
                   color:
                     router.pathname === link.href
                       ? primaryColor
-                      // : link.danger
-                      // ? "#c62828"
-                      : "#333",
-               
+                      : // : link.danger
+                        // ? "#c62828"
+                        "#333",
+
                   textDecoration: "none",
                   fontWeight: 500,
                   transition: "all 0.3s ease",
@@ -102,11 +110,11 @@ export default function Layout({ children, customerKey }: Props) {
 
       <div
         style={{
-          flex:1,
+          flex: 1,
           display: "flex",
           flexDirection: "column",
           overflow: "hidden",
-          marginTop: "16px"
+          marginTop: "16px",
         }}
       >
         {/* {customerKey?.length > 0 && (
@@ -125,7 +133,7 @@ export default function Layout({ children, customerKey }: Props) {
             </Typography>
           </Box>
         )} */}
- 
+
         {children}
       </div>
     </div>
